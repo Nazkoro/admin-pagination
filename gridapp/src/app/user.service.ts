@@ -13,6 +13,7 @@ export class UserService{
     }
 
     createUser(user: User){
+
         // const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
         // return this.http.post<User>(this.url, JSON.stringify(user), {headers: myHeaders});
         return this.http.post<User>(`${this.url}/create`, user);

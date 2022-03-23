@@ -6,9 +6,12 @@ import { AppComponent }   from './app.component';
 import { FormatPipe} from './format.pipe';
 import { ReactiveFormsModule }   from '@angular/forms';
 import {NgxPaginationModule} from "ngx-pagination";
+import { AuthComponent } from './auth/auth.component';
+import {AppRoutingModule} from "./app-routing.module";
+import { AdminComponent } from './admin/admin.component';
 @NgModule({
-    imports:      [ BrowserModule, FormsModule, HttpClientModule, ReactiveFormsModule, NgxPaginationModule],
-    declarations: [ AppComponent ,FormatPipe],
+    imports:      [ BrowserModule, FormsModule, HttpClientModule, ReactiveFormsModule, NgxPaginationModule, AppRoutingModule],
+    declarations: [ AppComponent ,FormatPipe, AuthComponent, AdminComponent],
     bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
