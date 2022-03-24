@@ -1,14 +1,15 @@
 <div class="container">
-    <div class="form">
-        <form action="">
-            <div class="email">
-                <label for="email" style="margin-right: 48px;">email</label>
-                <input type="email" name="email" id="email" placeholder="email">
+    <div class="form" >
+        <form #myForm="ngForm" novalidate (ngSubmit)="onSubmit(myForm)">
+            <div class="email" class="form-group">
+                <label  style="margin-right: 48px;">email</label>
+                <input type="email" class="form-control" name="email" ngModel
+                       required email  id="email" placeholder="email">
             </div>
 
-            <div class="password">
-                <label for="password" style="margin-right: 20px;">password</label>
-                <input type="password" name="password" id="password" placeholder="password">
+            <div class="password" class="form-group">
+                <label style="margin-right: 20px;">password</label>
+                <input type="password" class="form-control" ngModel required password  name="password" id="password" placeholder="password">
             </div>
             <button>submit</button>
         </form>

@@ -7,10 +7,7 @@ import {AdminComponent} from "./admin/admin.component";
 
 const routes: Routes = [
     {
-        path: 'auth', component: AuthComponent,
-    },
-    {
-        path: '', component: AppComponent,
+        path: '', component: AuthComponent,
     },
     {
         path: 'admin', component: AdminComponent,

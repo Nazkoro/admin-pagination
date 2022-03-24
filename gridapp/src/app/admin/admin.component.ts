@@ -13,9 +13,11 @@ export class AdminComponent implements OnInit {
   @ViewChild('readOnlyTemplate', {static: false}) readOnlyTemplate: TemplateRef<any>|undefined;
   @ViewChild('editTemplate', {static: false}) editTemplate: TemplateRef<any>|undefined;
 
-  p: number = 1;
+  page: number = 1;
+  PerPage: number = 2;
+  limitPage:number = 6;
   editedUser: User|null = null;
-  users: Array<User>;
+  users: Array<User> = [];
   isNewRecord: boolean = false;
   statusMessage: string = "";
 
@@ -26,11 +28,19 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     this.loadUsers();
   }
+  skipPage(){
+    console.log(this.page)
+    if(Math.ceil(this.users.length/this.PerPage) === this.page){
+      this.loadUsers();
+    }
+
+  }
 
   //загрузка пользователей
   private loadUsers() {
-    this.serv.getUsers().subscribe((data: Array<User>) => {
-      this.users = data;
+    this.serv.getUsers(this.page -1, this.limitPage, this.PerPage).subscribe((data: Array<User>) => {
+      this.users =[...this.users,...data] ;
+      console.log(this.users)
     });
   }
   // добавление пользователя

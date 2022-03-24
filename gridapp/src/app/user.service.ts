@@ -8,24 +8,24 @@ export class UserService{
     private url = "http://localhost:4000/api/admin";
     constructor(private http: HttpClient){ }
 
-    getUsers(){
-        return this.http.get<User[]>(this.url);
+    getUsers(page, limit, PerPage){
+        return this.http.get<User[]>(`${this.url}?page=${page}&limit=${limit}&PerPage=${PerPage}`);
     }
 
     createUser(user: User){
-
-        // const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        // return this.http.post<User>(this.url, JSON.stringify(user), {headers: myHeaders});
         return this.http.post<User>(`${this.url}/create`, user);
     }
+
+    login(model: object){
+        console.log("cred", model)
+        return this.http.post<User>(`${this.url}/auth`, model);
+    }
+
     updateUser(user: User) {
-        // const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        // return this.http.put<User>(this.url, JSON.stringify(user), {headers:myHeaders});
         return this.http.put<User>(`${this.url}/update`, user);
     }
 
     deleteUser(id: any){
-
         return this.http.delete<User>(this.url + '/' + id);
     }
 }
