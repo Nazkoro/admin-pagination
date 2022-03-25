@@ -8,3 +8,10 @@ input.ng-touched.ng-valid {border:solid green 2px;}
 .filter{
     background-color: #ccc;
 }
+.spinner-border{
+    background-color: darkcyan;
+    margin: auto;
+    color: darkorange;
+    font-size: 32px;
+    text-align: center;
+}

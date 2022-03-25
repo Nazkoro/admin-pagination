@@ -1,0 +1,33 @@
+<p>filter data</p>
+
+    <label for="cars">по году рождения:</label>
+    <select [(ngModel)]="selectedOption" name="cars" id="cars">
+        <option value=">"> > </option>
+        <option value=">="> >= </option>
+        <option value="=="> = </option>
+        <option value="<="> <= </option>
+        <option value="<"> < </option>
+        <option value="all"> all </option>
+    </select><br>
+
+<div class="filter">
+    <label for="year">write year:</label>
+    <input type="text" id="year" name="year" [(ngModel)]="year" placeholder="write (number format xxxx)">
+
+    <label for="username">write username:</label>
+    <input type="text" id="username" name="username" [(ngModel)]="username" placeholder="write username">
+
+    <label for="country">write country:</label>
+    <input type="text" id="country" name="country" [(ngModel)]="country" placeholder="write country">
+
+
+    <label for="city">write city:</label>
+    <input type="text" id="city" name="city" [(ngModel)]="city" placeholder="write city">
+
+    <label for="jobs">write jobs:</label>
+    <input type="text" id="jobs" name="jobs" [(ngModel)]="jobs" placeholder="write jobs">
+</div>
+
+
+<button (click)="select()"> Fiter data</button>
+<button (click)="clearFilter()"> Show all </button>

@@ -12,7 +12,6 @@ export class AdminComponent implements OnInit {
   //типы шаблонов
   @ViewChild('readOnlyTemplate', {static: false}) readOnlyTemplate: TemplateRef<any>|undefined;
   @ViewChild('editTemplate', {static: false}) editTemplate: TemplateRef<any>|undefined;
-
   page: number = 1;
   PerPage: number = 2;
   limitPage:number = 6;
@@ -20,6 +19,7 @@ export class AdminComponent implements OnInit {
   users: Array<User> = [];
   isNewRecord: boolean = false;
   statusMessage: string = "";
+  unlockPagin: boolean = true;
 
   constructor(private serv: UserService) {
     this.users = new Array<User>();
@@ -29,18 +29,24 @@ export class AdminComponent implements OnInit {
     this.loadUsers();
   }
   skipPage(){
-    console.log(this.page)
-    if(Math.ceil(this.users.length/this.PerPage) === this.page){
+    if(Math.ceil(this.users.length/this.PerPage) === this.page && this.unlockPagin){
       this.loadUsers();
     }
+  }
+
+  printFiltered(users){
+    this.users = [...users]
+  }
+  blockPagination(flag){
+    this.unlockPagin = flag
 
   }
+
 
   //загрузка пользователей
   private loadUsers() {
     this.serv.getUsers(this.page -1, this.limitPage, this.PerPage).subscribe((data: Array<User>) => {
       this.users =[...this.users,...data] ;
-      console.log(this.users)
     });
   }
   // добавление пользователя
@@ -86,7 +92,6 @@ export class AdminComponent implements OnInit {
   cancel() {
     // если отмена при добавлении, удаляем последнюю запись
     if (this.isNewRecord) {
-      // this.users.pop();
       this.users.shift();
       this.isNewRecord = false;
     }
@@ -98,9 +103,6 @@ export class AdminComponent implements OnInit {
       this.statusMessage = 'Данные успешно удалены',
           this.loadUsers();
     });
-  }
-  selectTodo(event : any): void {
-    console.log(event)
   }
 
 }

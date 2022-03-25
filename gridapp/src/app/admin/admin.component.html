@@ -1,7 +1,13 @@
-<div class="main">
-    <section class="filter">
-        <h2>filter</h2>
+<div class="main" *ngIf="this.users.length > 0">
+    <section class="filter" >
+        <filter
+                [collection] = "users"
+                (filteredUser)="printFiltered($event)"
+                (reset)="blockPagination($event)"
+
+        ></filter>
     </section>
+
     <section class="admin-panel">
         <h1>Список пользователей  <a  routerLink="/"  style="background-color: pink"> log out</a></h1>
 
@@ -24,7 +30,7 @@
 
             </thead>
             <tbody>
-            <tr *ngFor="let user of users | paginate: { itemsPerPage: PerPage, currentPage: page }" (click)="selectTodo(user)" style="height: 300px">
+            <tr *ngFor="let user of users | paginate: { itemsPerPage: PerPage, currentPage: page }"  style="height: 300px">
                 <ng-template [ngTemplateOutlet]="loadTemplate(user)"
                              [ngTemplateOutletContext]="{ $implicit: user}">
                 </ng-template>
@@ -67,8 +73,6 @@
             <td>
                 <input type="number" [(ngModel)]="editedUser.year" class="form-control" />
             </td>
-
-
             <td>
                 <input type="text" [(ngModel)]="editedUser.password" class="form-control" />
             </td>
@@ -96,4 +100,6 @@
 
 </div>
 
-
+<div class="spinner-border" role="status" *ngIf="this.users.length == 0">
+    <span class="sr-only">Loading...</span>
+</div>

@@ -12,6 +12,10 @@ export class UserService{
         return this.http.get<User[]>(`${this.url}?page=${page}&limit=${limit}&PerPage=${PerPage}`);
     }
 
+    getFilteredUsers(model){
+        return this.http.post<User[]>(`${this.url}/filter`, model);
+    }
+
     createUser(user: User){
         return this.http.post<User>(`${this.url}/create`, user);
     }

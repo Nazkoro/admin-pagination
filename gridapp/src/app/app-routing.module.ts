@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule, ActivatedRoute} from '@angular/router';
-import {AppComponent} from './app.component';
 import {AuthComponent} from "./auth/auth.component";
 import {AdminComponent} from "./admin/admin.component";
 
@@ -18,7 +17,6 @@ const routes: Routes = [
 @NgModule({
     imports: [
         RouterModule.forRoot(routes),
-        // ProfileRoutingModule
     ],
     exports: [RouterModule]
 })
